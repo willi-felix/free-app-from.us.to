@@ -22,7 +22,7 @@ jobs:
       run: npm install
 
     - name: Run verification script
-      run: node verify_jsons.js
+      run: npm run verify
 
     - name: Check IP Address
       id: check-ip
