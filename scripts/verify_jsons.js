@@ -36,7 +36,7 @@ function verifyFileFormat(fileName) {
 
     // Check if the file name matches any of the special cases
     for (let i = 0; i < specialCases.length; i++) {
-        if (fileName.startsWith(specialCases[i] + ".thedev.me.json")) {
+        if (fileName.startsWith(specialCases[i] + ".app-from.us.to.json")) {
             return pattern.test(fileName);
         }
     }
