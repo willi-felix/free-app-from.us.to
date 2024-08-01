@@ -1,6 +1,6 @@
 {
   "subdomain": "yoursubdomain",
-  "domain": "thedev.me",
+  "domain": "app-from.us.to",
   "public_email": "user@example.com",
   "github_username": "user",
   "description": "A brief description of the purpose of the subdomain",
@@ -16,10 +16,6 @@
     ],
     "CNAME": [
       "example.com"
-    ],
-    "NS": [
-      "ns1.example.com",
-      "ns2.example.com"
     ],
     "MX": [
       "mail1.example.com",
