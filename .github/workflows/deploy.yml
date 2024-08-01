@@ -1,0 +1,46 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run verification script
+      run: node verify_jsons.js
+
+    - name: Check IP Address
+      id: check-ip
+      run: |
+        ALLOWED_IPS=("123.456.78.90" "234.567.89.01")
+        CURRENT_IP=$(curl -s http://checkip.amazonaws.com)
+        echo "Current IP: $CURRENT_IP"
+
+        if [[ ! " ${ALLOWED_IPS[@]} " =~ " ${CURRENT_IP} " ]]; then
+          echo "IP address $CURRENT_IP is not allowed."
+          exit 1
+        fi
+
+    - name: Deploy to Cloudflare Pages
+      if: steps.check-ip.outcome == 'success'
+      uses: cloudflare/pages-action@v1
+      with:
+        apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        projectName: ${{ secrets.CLOUDFLARE_PROJECT_NAME }}
+        directory: 'public'
