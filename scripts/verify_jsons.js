@@ -67,11 +67,11 @@ function isValidDomain(domain) {
 function validateJson(jsonData, filePath) {
     const errors = [];
 
-    // Validate JSON name format (subdomainName.thedev.me.json)
+    // Validate JSON name format (subdomainName.app-from.us.to.json)
     const fileName = path.basename(filePath);
     if (!verifyFileFormat(fileName)) {
         console.log(fileName)
-        errors.push(`:ERROR: Only third-level domains are supported. Rename your JSON to this format: 'SUBDOMAIN.thedev.me.json'.`);
+        errors.push(`:ERROR: Only fouth-level domains are supported. Rename your JSON to this format: 'SUBDOMAIN.app-from.us.to.json'.`);
     }
 
     // Validate subdomain
