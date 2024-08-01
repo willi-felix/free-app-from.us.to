@@ -29,21 +29,21 @@ function verifySubdomainMatch(subdomain, filePath) {
 }
 
 function verifyFileFormat(fileName) {
-    const pattern = /^(@|_dmarc|[a-zA-Z0-9\-]+|purelymail[1-3]\._domainkey)\.thedev\.me\.json$/; // Expression to validate file name.
+    const pattern = /^(@|_dmarc|[a-zA-Z0-9\-]+|purelymail[1-3]\._domainkey)\.app-from\.(us\.to|uk\.to)\.json$/; // Expression to validate file name.
 
     // Special cases that should bypass the 4-part check. Important for the main domain and for email support
     const specialCases = ["@", "_dmarc", "purelymail1._domainkey", "purelymail2._domainkey", "purelymail3._domainkey"];
 
     // Check if the file name matches any of the special cases
     for (let i = 0; i < specialCases.length; i++) {
-        if (fileName.startsWith(specialCases[i] + ".app-from.us.to.json")) {
+        if (fileName.startsWith(specialCases[i] + ".app-from.us.to.json") || fileName.startsWith(specialCases[i] + ".app-from.uk.to.json")) {
             return pattern.test(fileName);
         }
     }
 
     const fileNameParts = fileName.split('.');
-    // Expecting exactly 4 chunks after splitting AND to match the expression
-    if (fileNameParts.length !== 4 || !pattern.test(fileName)) {
+    // Expecting exactly 5 chunks after splitting AND to match the expression
+    if (fileNameParts.length !== 5 || !pattern.test(fileName)) {
         return false;
     }
 
@@ -71,7 +71,7 @@ function validateJson(jsonData, filePath) {
     const fileName = path.basename(filePath);
     if (!verifyFileFormat(fileName)) {
         console.log(fileName)
-        errors.push(`:ERROR: Only fouth-level domains are supported. Rename your JSON to this format: 'SUBDOMAIN.app-from.us.to.json'.`);
+        errors.push(`:ERROR: Only fourth-level domains are supported. Rename your JSON to this format: 'SUBDOMAIN.app-from.us.to.json' or 'SUBDOMAIN.app-from.uk.to.json'.`);
     }
 
     // Validate subdomain
@@ -89,7 +89,7 @@ function validateJson(jsonData, filePath) {
 
     // Validate domain
     const domain = jsonData.domain || '';
-    if (!domain || domain !== "thedev.me") {
+    if (!domain || !['app-from.us.to', 'app-from.uk.to'].includes(domain)) {
         errors.push(':ERROR: Domain is invalid.');
     }
 
@@ -224,11 +224,10 @@ function main() {
     if (allErrors.length > 0) {
         console.error('Validation errors found:');
         allErrors.forEach(error => console.error(`- ${error}`));
-        process.exit(1); // Exit with an error code
+        process.exit(1);
     } else {
-        console.log('JSON files content is valid.');
+        console.log('All files validated successfully.');
     }
 }
 
-// Run the main function
 main();
