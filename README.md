@@ -12,7 +12,7 @@
 
 1. 🌟 Star and fork this repository
 2. 📰 Read the entire README and review our [Terms of Service](TERMS.md)
-3. 🗄️ Create a JSON file and name it `yoursubdomain.thedev.me.json` in `./domains` of your forked repo.
+3. 🗄️ Create a JSON file and name it `yoursubdomain.app-from.us.to.json` in `./domains` of your forked repo.
 4. ✍️ Fill in the JSON file (format and instructions below). Make sure the JSON is valid with no trailing commas.
 5. 🫷 Open a pull request with your changes.
 6. 🤖 Automated checks will run and report any JSON errors. (First-time contributors await a manual trigger.)
@@ -28,20 +28,14 @@
 
 - **We do NOT support wildcards or sub-subdomains.** <sub>(yet).</sub>
 
-- Always **Free SSL** for own subdomains
+- Always **Free SSL** for all domains
 
 
 ## JSON Formatting
 
-To register your subdomain, create a new JSON file in the `./domains` directory. The filename should be in the following format, `yoursubdomain.thedev.me.json`.
+To register your subdomain, create a new JSON file in the `./domains` directory. The filename should be in the following format, `yoursubdomain.app-from.us.to.json`.
 
 Use the following structure for your JSON file.
-
-> [!IMPORTANT]  
-> Keep only the necessary records, update their values as needed, and delete the others. Typically, this means an IP address as an A record or a hostname as a CNAME record. NS records specify the nameservers that store DNS records. MX and TXT records handle email routing and ensure email authenticity and domain ownership. [Learn more about DNS records.](https://www.cloudflare.com/learning/dns/dns-records/)
-
-> [!IMPORTANT]
-> Ensure your JSON file is valid with NO trailing commas. You can easily check the format validity [here](https://jsonlint.com).
 
 ```json
 {
