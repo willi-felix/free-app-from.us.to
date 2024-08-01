@@ -28,6 +28,8 @@
 
 - **We do NOT support wildcards or sub-subdomains.** <sub>(yet).</sub>
 
+- Always **Free SSL** for own subdomains
+
 
 ## JSON Formatting
 
@@ -44,7 +46,7 @@ Use the following structure for your JSON file.
 ```json
 {
   "subdomain": "yoursubdomain",
-  "domain": "thedev.me",
+  "domain": "app-from.us.to",
   "public_email": "user@example.com",
   "github_username": "user",
   "description": "A brief description of the purpose of the subdomain",
@@ -81,7 +83,7 @@ Use the following structure for your JSON file.
 ## Fields Explanation
 
 - `subdomain`: Your desired subdomain (e.g., "myproject" for myproject.thedev.me)
-- `domain`: Always "thedev.me"
+- `domain`: Always "app-from.us.to"
 - `public_email`: Your public contact email
 - `github_username`: Your GitHub username
 - `description`: A brief description of your subdomain's purpose
@@ -93,21 +95,3 @@ Use the following structure for your JSON file.
 
 By using this service, you agree to be bound by our [Terms of Service](TERMS.md). Please review them carefully.
 
-
-## License
-
-MIT License
-
-
-## Support
-
-If you need help or have questions, please open an issue in this repository or send an email to contact@thedev.me
-
-
-## Featured
-
-If you're interested in registering subdomains similar to `*.thedev.me`, consider exploring these services:
-- [Open Domains](https://open-domains.net)
-- [is-a.dev](https://www.is-a.dev)
-- [thedev.id](https://thedev.id)
-- [js.org](https://github.com/js-org/js.org)
